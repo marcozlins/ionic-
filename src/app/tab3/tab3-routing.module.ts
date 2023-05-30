@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Tab3Page } from './tab3.page';
+import { Tab3PageModule } from './tab3.module';
 import { User } from '../model/user';
 
 const routes: Routes = [
   {
     path: '',
-    component: Tab3Page,
+    component: Tab3PageModule,
   }
 ];
 

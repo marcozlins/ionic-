@@ -2,19 +2,21 @@
 import { Component } from '@angular/core';
 import { User } from '../model/user';
 import { AlertController } from '@ionic/angular';
+import { Produto } from '../model/produtos';
+import { ProdutoService } from '../services/user-service';
 @Component({
-  selector: 'app-tab2',
+  selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab2Page {
+export class Tab3Page {
 alertButtons: any;
   userService: any;
 
 constructor(private alertController: AlertController) {}
 
   
-  user = new User()
+  produto = new Produto()
   
   
   async presentAlert(tipo: string, texto:string) {
@@ -30,9 +32,9 @@ constructor(private alertController: AlertController) {}
   }
   
   save() {
-    this.userService.add(this.user);
+    this.userService.add(this.produto);
     this.presentAlert("Aviso", "Cadastrado");
-    console.log(this.user); 
+    console.log(this.produto); 
   
   
   }

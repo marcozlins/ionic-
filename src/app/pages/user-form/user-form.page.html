@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>userForm</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">userForm</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form #fc="ngForm">
+    <ion-list>
+
+      <ion-item class="pt-10">
+        <ion-input label="Nome" label-placement="floating" fill="outline" placeholder="Digite seu Nome" [(ngModel)]="user.nome" name="nome" required></ion-input> 
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="e-mail" label-placement="floating" fill="outline" placeholder="Digite seu e-mail"  [(ngModel)]="user.email" name="e-mail"  required  pattern="[^ @]*@[^ @]*"></ion-input>  
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Senha" label-placement="floating" fill="outline" placeholder="Digite sua Senha" [(ngModel)]="user.senha" name="Senha"></ion-input> 
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Telefone" label-placement="floating" fill="outline" placeholder="Digite seu Telefone" [(ngModel)]="user.telefone" name="Telefone" ></ion-input> 
+      </ion-item>
+
+    <ion-item class="pt-10">
+      <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Salvar</ion-button>
+      <ion-button color="danger" slot="end">Cancelar</ion-button>
+        
+    </ion-item>
+    </ion-list>
+     </form>
+     
+</ion-content>
