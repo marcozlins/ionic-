@@ -1,17 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>atividade2</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">atividade2</ion-title>
     </ion-toolbar>
   </ion-header>
+   <form #fc="ngForm">
+    <ion-list>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+      <ion-item class="pt-10">
+        <ion-input label="id" label-placement="floating" fill="outline" placeholder="Digite o id"
+          [(ngModel)]="user.id" name="id" required></ion-input>
+      </ion-item>
+
+
+      <ion-item class="pt-10">
+        <ion-input label="Nome" label-placement="floating" fill="outline" placeholder="Digite seu nome"
+          [(ngModel)]="user.nome" name="nome" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Categoria" label-placement="floating" fill="outline" placeholder="Digite sua Categoria"
+          [(ngModel)]="user.Categoria" name="Categoria" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Descrição" label-placement="floating" fill="outline" placeholder="Digite sua Descrição"
+          [(ngModel)]="user.descricao" name="Descrição" required></ion-input>
+      </ion-item>
+
+      <ion-item class="pt-10">
+        <ion-input label="Quantidade" label-placement="floating" fill="outline" placeholder="Digite a quantidade"
+          [(ngModel)]="user.quant" name="Quantidade" required></ion-input>
+      </ion-item>
+
+      
+      <ion-item class="pt-10">
+        <ion-input label="valor" label-placement="floating" fill="outline" placeholder="Digite seu valor"
+          [(ngModel)]="user.valor" name="valor"></ion-input>
+      </ion-item>
+
+         
+      <ion-item class="pt-10">
+        <ion-input label="Fotos" label-placement="floating" fill="outline" placeholder="Coloque suas fotos"
+          [(ngModel)]="user.fotos" name="fotos"></ion-input>
+      </ion-item>
+
+      <ion-item  class="pt-10" >
+        <ion-button [disabled]="fc.invalid" slot="end" (click)="save()">Cadastrar</ion-button>
+        <ion-button color="danger" slot="end">Cancelar</ion-button>
+      </ion-item>
+
+    </ion-list>
+  </form>
 </ion-content>
