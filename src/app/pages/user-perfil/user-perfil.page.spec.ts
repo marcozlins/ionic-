@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserFormPage } from './user-form.page';
+import { UserPerfilPage } from './user-perfil.page';
 
-describe('UserFormPage', () => {
-  let component: UserFormPage;
-  let fixture: ComponentFixture<UserFormPage>;
+describe('UserPerfilPage', () => {
+  let component: UserPerfilPage;
+  let fixture: ComponentFixture<UserPerfilPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(UserFormPage);
+    fixture = TestBed.createComponent(UserPerfilPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
