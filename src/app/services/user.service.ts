@@ -86,10 +86,34 @@ export class UserService {
 
   async loginGoogle() {
     const provide = new GoogleAuthProvider
-    return await signInWithPopup(this.auth, provide)
+    return await signInWithPopup(this.auth, provider)
+  }
+
+  async setPhotoPerfil(imgName: string, imgBase64: string) {
+ 
+    const storeRef = ref(this.storage, "user/" + imgName);
+    return await uploadString(storeRef, imgBase64);
+
+  }
+ 
+  storage(storage: any, arg1: string) {
+    throw new Error('Method not implemented.');
   }
 
 }
 
 
+
+
+function uploadBytesResumable(storeRef: any, file: File) {
+  throw new Error('Function not implemented.');
+}
+
+function uploadString(storeRef: any, imgBase64: string) {
+  throw new Error('Function not implemented.');
+}
+
+function ref(storage: (storage: any, arg1: string) => void, arg1: string) {
+  throw new Error('Function not implemented.');
+}
 

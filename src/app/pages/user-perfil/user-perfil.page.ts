@@ -1,6 +1,9 @@
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-user-perfil',
@@ -10,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserPerfilPage implements OnInit {
 
   constructor(
-    private activateRouter: ActivatedRoute,
+    private activatedRouter: ActivatedRoute,
     private userService: UserService
   ) { }
 
@@ -19,16 +22,34 @@ export class UserPerfilPage implements OnInit {
   }
 
   user = new User;
-  _id; string | null = null;
+  _id: string | null = null;
+  imageSrc: string | undefined;
 
   getParam() {
-    this._id = this.activateRouter.snapshot.paramMap.get("id");
+    this._id = this.activatedRouter.snapshot.paramMap.get("id");
     if (this._id) {
-      this.UserService.get(this_id0).then(res => {
+      this.userService.get(this._id).then(res => {
         this.user = <User>res;
       })
     }
   }
-  
+
+  async takePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+    const imageUrl = image.webPath;
+    this.imageSrc = imageUrl;
+    this.user.foto = this.imageSrc ? this.imageSrc : "";
+
+
+    if (image.base64String) {
+      let timeStamp = new Date().getMilliseconds().toString();
+     
+    this.userService.setPhotoPerfil(timeStamp, image.base64String) 
+    }
+  }
 
 }
