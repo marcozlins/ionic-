@@ -12,8 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class UserFormPage implements OnInit {
 
   constructor(
-    private alertController: AlertController,
     private userService: UserService,
+    private alertController: AlertController,
     private activeRouter: ActivatedRoute,
     private router: Router
   ) { }
@@ -43,6 +43,7 @@ export class UserFormPage implements OnInit {
     });
     await alert.present();
   }
+
   save() {
     try {
       this.userService.add(this.user)

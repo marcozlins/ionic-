@@ -1,4 +1,4 @@
-//import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
 export class User {
     _id: string = "";
     nome: string = "";
@@ -6,5 +6,5 @@ export class User {
     foto: string = "";
     email: string = "";
     senha: string = "";
-    ativo: boolean= true;
+    ativo: boolean = true;
 }

@@ -6,13 +6,12 @@ export const environment = {
   production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig: {
-    apiKey: "AIzaSyBnX9vQoOcq2HsurhjaYGIyAlXneFYJh2E",
-    authDomain: "salaomobile-d2a94.firebaseapp.com",
-    projectId: "salaomobile-d2a94",
-    storageBucket: "salaomobile-d2a94.appspot.com",
-    messagingSenderId: "381101130701",
-    appId: "1:381101130701:web:306460cd5500a645c5ba84",
-    measurementId: "G-72R819457Q"
+    apiKey: "AIzaSyCr7VnInOlaVjZdSwvZeCAUyvNSf53imN0",
+  authDomain: "marcos-e88b3.firebaseapp.com",
+  projectId: "marcos-e88b3",
+  storageBucket: "marcos-e88b3.appspot.com",
+  messagingSenderId: "1059695208402",
+  appId: "1:1059695208402:web:415100efe385b19f820a0b"
   }
 };
 

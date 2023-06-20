@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-user-perfil',
@@ -28,8 +27,16 @@ export class UserPerfilPage implements OnInit {
   getParam() {
     this._id = this.activatedRouter.snapshot.paramMap.get("id");
     if (this._id) {
-      this.userService.get(this._id).then(res => {
+      this.userService.get(this._id).then(async res => {
         this.user = <User>res;
+        if (this.user.foto) {
+          await this.userService.getProtoPerfil(this.user.foto)
+            .then(res => {
+              this.imageSrc = res
+            })
+        } else {
+          this.imageSrc = "assets/perfil.webp"
+        }
       })
     }
   }
@@ -38,17 +45,20 @@ export class UserPerfilPage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.Base64
     });
-    const imageUrl = image.webPath;
-    this.imageSrc = imageUrl;
-    this.user.foto = this.imageSrc ? this.imageSrc : "";
+    // const imageUrl = image.webPath;
+    // this.imageSrc = imageUrl;
+    // this.user.foto = this.imageSrc ? this.imageSrc : "";
+    console.log(image)
 
-
-    if (image.base64String) {
-      let timeStamp = new Date().getMilliseconds().toString();
-     
-    this.userService.setPhotoPerfil(timeStamp, image.base64String) 
+    if (image.base64String && this._id) {
+      let nameFile = Date.now().toString() + "." + image.format;
+      await this.userService.setPhotoPerfil(nameFile, image.base64String, this._id)
+      await this.userService.getProtoPerfil("user/" + nameFile)
+        .then(resUrl => {
+          this.imageSrc = resUrl
+        })
     }
   }
 

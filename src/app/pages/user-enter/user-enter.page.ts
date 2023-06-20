@@ -1,10 +1,8 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { UtilsService } from 'src/app/services/utils.service';
-import { error } from 'console';
-import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
-
+import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-user-enter',
@@ -14,8 +12,8 @@ import { User } from 'src/app/model/user';
 export class UserEnterPage implements OnInit {
 
   constructor(
-    private router: Router,
     private userService: UserService,
+    private router: Router,
     private util: UtilsService
   ) { }
 
@@ -27,35 +25,36 @@ export class UserEnterPage implements OnInit {
 
   async enter() {
     await this.userService.login(this.email, this.senha)
-    .then(res => {
+      .then(res => {
         console.log(res);
-        this.router.navigate([''])
+        this.router.navigate(["/"]);
       })
       .catch(erro => {
-        console.error(error);
-        this.util.alert("Error", "Usuário ou dados inválidos!")
+        console.error(erro);
+        this.util.alert("Error", "Usuário  ou dados inválidos!")
       })
   }
 
   async enterGoogle() {
-    await this.userService.loginGoogle().then(res => {
-      console.log(res);
-
-      this.userService.addUser(<User>{
-        email: res.user.email,
-        foto: res.user.photoURL,
-        nome: res.user.displayName,
-        telefone: res.user.phoneNumber
-      },
-      res.user.uid)
-      .then(resUserAdd => {
-        this.router.navigate(["/"]);
+    await this.userService.loginGoogle()
+      .then(async res => {
+        console.log(res);
+        await this.userService.addUser(<User>{
+          email: res.user.email,
+          foto: res.user.photoURL,
+          nome: res.user.displayName,
+          telefone: res.user.phoneNumber,
+          ativo: true
+        },
+          res.user.uid)
+          .then(resUserAdd => {
+            this.router.navigate(["/"]);
+          })
       })
-    })
-    .catch(erro => {
-      console.error(erro);
-      this.util.alert("Error", "Usuário ou inváidos!")
-    })
+      .catch(erro => {
+        console.error(erro);
+        this.util.alert("Error", "Usuário  ou dados inválidos!")
+      })
   }
 
 }
